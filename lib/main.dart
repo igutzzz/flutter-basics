@@ -6,9 +6,14 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
 
+class _MyAppState extends State<MyApp> {
+  String buttonText = "Click";
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,11 +24,14 @@ class MyApp extends StatelessWidget {
           title: const Text('Flutter layout demo'),
           backgroundColor: Colors.red,
         ),
-        body: const Center(
-            child: Card(
-          child: Padding(
-              padding: EdgeInsets.all(32.0), child: Text("Hello World!")),
-        )),
+        body: Center(
+            child: ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    buttonText = "Clicado";
+                  });
+                },
+                child: Text(buttonText))),
         bottomNavigationBar: BottomNavigationBar(
           items: const [
             BottomNavigationBarItem(
